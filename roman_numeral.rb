@@ -15,6 +15,7 @@ class RomanNumeral
 
   attr_reader :string
   alias_method :to_s, :string
+  alias_method :inspect, :string
 
   def initialize(s)
     raise "INVALID ROMAN NUMERAL #{s}" unless self.class.valid?(s)
@@ -79,4 +80,29 @@ class RomanNumeral
   end
 
 end
+
+iv   = RomanNumeral.new('IV')
+iiii = RomanNumeral.new('IIII')
+x    = RomanNumeral.new('X')
+
+puts "iv: #{iv}"
+puts "iiii: #{iiii}"
+puts "x: #{x}"
+
+puts "iv == iiii: #{iv == iiii}"
+puts "iv === iiii: #{iv === iiii}"
+puts "iv.eql? iiii: #{iv.eql? iiii}"
+puts "iv.equal? iiii: #{iv.equal? iiii}"
+puts
+
+hash = {}
+hash[iv] = 'four'
+puts "hash: #{hash}"
+puts "hash[iv]: #{hash[iv]}"
+puts "hash[iiii]: #{hash[iiii]}"
+puts
+
+puts "[iv, x, iiii]: #{[iv, x, iiii].inspect}"
+puts
+puts "[iv, x, iiii].sort: #{[iv, x, iiii].sort.inspect}"
 
