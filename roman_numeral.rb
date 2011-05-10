@@ -11,6 +11,8 @@ class RomanNumeral
     "M" => 1000
   }
 
+  include Comparable
+
   attr_reader :string
   alias_method :to_s, :string
 
@@ -19,14 +21,14 @@ class RomanNumeral
     @string = s
   end
 
-  def ==(other)
+  def <=>(other)
     case
     when self.class.valid?(other)
-      self == RomanNumeral.new(other)
+      self <=> RomanNumeral.new(other)
     when other.respond_to?(:to_f)
-      self.to_f == other.to_f
+      self.to_f <=> other.to_f
     else
-      super
+      nil
     end
   end
 
